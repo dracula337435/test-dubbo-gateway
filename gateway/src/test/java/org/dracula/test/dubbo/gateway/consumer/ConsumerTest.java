@@ -1,7 +1,6 @@
 package org.dracula.test.dubbo.gateway.consumer;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
@@ -52,16 +51,8 @@ public class ConsumerTest {
         @Bean
         public RegistryConfig registryConfig(){
             RegistryConfig registryConfig = new RegistryConfig();
-            registryConfig.setAddress("multicast://224.5.6.7:1234");
+            registryConfig.setAddress("zookeeper://localhost:2181");
             return registryConfig;
-        }
-
-        @Bean
-        public ProtocolConfig protocolConfig(){
-            ProtocolConfig protocolConfig = new ProtocolConfig();
-            protocolConfig.setName("rest");
-            protocolConfig.setPort(8080);
-            return protocolConfig;
         }
 
     }
