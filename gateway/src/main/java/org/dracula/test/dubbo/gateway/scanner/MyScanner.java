@@ -3,7 +3,6 @@ package org.dracula.test.dubbo.gateway.scanner;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 
 import java.util.Arrays;
@@ -16,12 +15,12 @@ import java.util.function.Consumer;
  */
 public class MyScanner extends ClassPathBeanDefinitionScanner{
 
-    private Consumer<GenericBeanDefinition> definitionConsumer;
+    private Consumer<BeanDefinitionHolder> holderConsumer;
 
-    public MyScanner(BeanDefinitionRegistry registry, Consumer<GenericBeanDefinition> definitionConsumer) {
+    public MyScanner(BeanDefinitionRegistry registry, Consumer<BeanDefinitionHolder> holderConsumer) {
         super(registry, false);
         addIncludeFilter((metadataReader, metadataReaderFactory)->true);
-        this.definitionConsumer = definitionConsumer;
+        this.holderConsumer = holderConsumer;
     }
 
     @Override
@@ -39,8 +38,7 @@ public class MyScanner extends ClassPathBeanDefinitionScanner{
 
     private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
         for (BeanDefinitionHolder holder : beanDefinitions) {
-            GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
-            definitionConsumer.accept(definition);
+            holderConsumer.accept(holder);
         }
     }
 

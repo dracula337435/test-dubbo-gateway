@@ -1,4 +1,4 @@
-package org.dracula.test.dubbo.gateway.gateway;
+package org.dracula.test.dubbo.gateway.nowhere;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
