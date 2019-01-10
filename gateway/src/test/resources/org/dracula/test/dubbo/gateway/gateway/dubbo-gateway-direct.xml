@@ -10,7 +10,8 @@
 
     <dubbo:application name="test-dubbo-gateway" />
 
-    <dubbo:reference interface="org.dracula.test.dubbo.gateway.TestInterface" url="rest://localhost:8080"
-                     id="test-interface-remote" />
+    <bean class="org.dracula.test.dubbo.gateway.scanner.MyScannerConfigurer" >
+        <property name="basePackage" value="org.dracula.test.dubbo.gateway" />
+    </bean>
 
 </beans>
