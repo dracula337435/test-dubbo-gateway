@@ -13,9 +13,9 @@
     <!-- for provider -->
     <dubbo:registry address="zookeeper://localhost:2181" />
 
-    <bean class="org.dracula.test.dubbo.gateway.gateway.GenericTest" id="test-interface-generic" >
-        <property name="interfaceClass" value="org.dracula.test.dubbo.gateway.TestInterface" />
-        <property name="ref" ref="test-interface-remote" />
+    <bean class="org.dracula.test.dubbo.gateway.gateway.FakeImpl" id="test-interface-generic" factory-method="getObject">
+        <constructor-arg name="objectType" value="org.dracula.test.dubbo.gateway.TestInterface" />
+        <constructor-arg name="ref" ref="test-interface-remote" />
     </bean>
 
     <dubbo:service interface="org.dracula.test.dubbo.gateway.TestInterface" ref="test-interface-generic" />
