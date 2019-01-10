@@ -5,6 +5,8 @@ import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.dracula.test.dubbo.gateway.TestInterface;
+import org.dracula.test.dubbo.gateway.TestInterface2;
+import org.dracula.test.dubbo.gateway.TestInterface3;
 import org.dracula.test.dubbo.gateway.TestParam;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +34,26 @@ public class ConsumerTest {
         TestParam testParam = new TestParam();
         testParam.setText("gxk");
         logger.info(testInterface.sayHello(testParam).getText());
+    }
+
+    @Reference
+    private TestInterface2 testInterface2;
+
+    @Test
+    public void test2(){
+        TestParam testParam = new TestParam();
+        testParam.setText("gxk");
+        logger.info(testInterface2.sayHello(testParam).getText());
+    }
+
+    @Reference
+    private TestInterface3 testInterface3;
+
+    @Test
+    public void test3(){
+        TestParam testParam = new TestParam();
+        testParam.setText("gxk");
+        logger.info(testInterface3.sayHello(testParam).getText());
     }
 
     /**
