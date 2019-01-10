@@ -11,12 +11,16 @@ import javax.ws.rs.Produces;
  * @author dk
  */
 @Path("/TestInterface")
+@Consumes(ContentType.APPLICATION_JSON_UTF_8)
+@Produces(ContentType.APPLICATION_JSON_UTF_8)
 public interface TestInterface {
 
     @POST
     @Path("/sayHello")
-    @Consumes(ContentType.APPLICATION_JSON_UTF_8)
-    @Produces(ContentType.APPLICATION_JSON_UTF_8)
     TestParam sayHello(TestParam testParam);
+
+    @POST
+    @Path("/sayHello2")
+    TestParam sayHello2(TestParam testParam);
 
 }

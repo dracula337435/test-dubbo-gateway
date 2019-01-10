@@ -34,6 +34,7 @@ public class ConsumerTest {
         TestParam testParam = new TestParam();
         testParam.setText("gxk");
         logger.info(testInterface.sayHello(testParam).getText());
+        logger.info(testInterface.sayHello2(testParam).getText());
     }
 
     @Reference

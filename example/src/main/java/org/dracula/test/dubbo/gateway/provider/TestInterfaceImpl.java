@@ -16,4 +16,10 @@ public class TestInterfaceImpl implements TestInterface {
         return testParam;
     }
 
+    @Override
+    public TestParam sayHello2(TestParam testParam) {
+        testParam.setText("hello 2 "+testParam.getText());
+        return testParam;
+    }
+
 }
