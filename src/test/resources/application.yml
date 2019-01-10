@@ -1,0 +1,9 @@
+#
+dubbo:
+  application:
+    name: test-provider
+#  protocol:
+#    name: rest
+#    port: 8080
+  registry:
+    address: multicast://224.5.6.7:1234
