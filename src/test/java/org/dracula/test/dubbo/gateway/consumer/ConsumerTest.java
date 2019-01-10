@@ -1,6 +1,7 @@
 package org.dracula.test.dubbo.gateway.consumer;
 
 import com.alibaba.dubbo.config.ApplicationConfig;
+import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
@@ -55,12 +56,13 @@ public class ConsumerTest {
             return registryConfig;
         }
 
-//        @Bean
-//        public ProtocolConfig protocolConfig(){
-//            ProtocolConfig protocolConfig = new ProtocolConfig();
-//            protocolConfig.setName("rest");
-//            return protocolConfig;
-//        }
+        @Bean
+        public ProtocolConfig protocolConfig(){
+            ProtocolConfig protocolConfig = new ProtocolConfig();
+            protocolConfig.setName("rest");
+            protocolConfig.setPort(8080);
+            return protocolConfig;
+        }
 
     }
 
