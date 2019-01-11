@@ -1,6 +1,7 @@
-package org.dracula.test.dubbo.gateway.example;
+package org.dracula.test.dubbo.gateway.example.subpack;
 
 import com.alibaba.dubbo.rpc.protocol.rest.support.ContentType;
+import org.dracula.test.dubbo.gateway.example.TestParam;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;

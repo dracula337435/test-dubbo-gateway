@@ -6,7 +6,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
 import org.dracula.test.dubbo.gateway.example.TestInterface;
 import org.dracula.test.dubbo.gateway.example.TestInterface2;
-import org.dracula.test.dubbo.gateway.example.TestInterface3;
+import org.dracula.test.dubbo.gateway.example.subpack.TestInterface3;
 import org.dracula.test.dubbo.gateway.example.TestParam;
 import org.junit.Test;
 import org.junit.runner.RunWith;

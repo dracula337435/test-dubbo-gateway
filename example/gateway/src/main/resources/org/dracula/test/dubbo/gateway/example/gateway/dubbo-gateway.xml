@@ -11,7 +11,7 @@
     <dubbo:application name="test-dubbo-gateway" />
 
     <bean class="org.dracula.test.dubbo.gateway.scanner.MyScannerConfigurer" >
-        <property name="basePackage" value="org.dracula.test.dubbo.gateway" />
+        <property name="basePackage" value="org.dracula.test.dubbo.gateway.example" />
     </bean>
 
     <!-- for provider -->
