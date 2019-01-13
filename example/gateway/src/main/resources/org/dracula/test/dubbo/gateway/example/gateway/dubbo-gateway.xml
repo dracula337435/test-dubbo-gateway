@@ -10,8 +10,16 @@
 
     <dubbo:application name="test-dubbo-gateway" />
 
+    <bean id="referenceTemplate" class="com.alibaba.dubbo.config.ReferenceConfig" >
+        <property name="url" value="rest://localhost:8080" />
+    </bean>
+
+    <bean id="serviceTemplate" class="com.alibaba.dubbo.config.ServiceConfig" />
+
     <bean class="org.dracula.test.dubbo.gateway.scanner.MyScannerConfigurer" >
         <property name="basePackage" value="org.dracula.test.dubbo.gateway.example" />
+        <property name="referenceConfigTemplate" ref="referenceTemplate" />
+        <property name="serviceConfigTemplate" ref="serviceTemplate" />
     </bean>
 
     <!-- for provider -->
