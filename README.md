@@ -9,6 +9,9 @@
 在```dubbo-gateway.xml```中修改```MyScannerConfigurer```的```basePackage```可见到效果  
 若```basePackage```为```org.dracula.test.dubbo.gateway.example```，测试类调用3个接口均成功  
 若```basePackage```为```org.dracula.test.dubbo.gateway.example.subpack```，测试类调用3个接口仅成功位于subpack的```TestInterface3```  
+1. controller提供者+dubbo消费者rest直连，成功  
+dubbo提供者rest+RestTemplate消费者，成功  
+意味着dubbo-rest可以做到跨架构，甚至跨语言。gateway价值更加凸显
 
 ## 失败记录
 1. 直接把reference注进service，运行时错误，gateway方报错```com.alibaba.dubbo.common.bytecode.NoSuchMethodException: Method [sayHello] not found.```  
