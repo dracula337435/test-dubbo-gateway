@@ -13,12 +13,4 @@
 
     <artifactId>test-dubbo-gateway-core</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.dracula</groupId>
-            <artifactId>test-dubbo-gateway-example</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-
 </project>
