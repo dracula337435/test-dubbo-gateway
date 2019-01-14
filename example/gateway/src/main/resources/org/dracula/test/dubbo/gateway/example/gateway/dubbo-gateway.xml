@@ -11,16 +11,21 @@
     <dubbo:application name="test-dubbo-gateway" />
 
     <bean id="referenceTemplate" class="com.alibaba.dubbo.config.ReferenceConfig" >
-        <property name="url" value="rest://localhost:8080" />
+        <property name="protocol" value="dubbo" />
     </bean>
 
-    <bean id="serviceTemplate" class="com.alibaba.dubbo.config.ServiceConfig" />
+    <bean id="serviceTemplate" class="com.alibaba.dubbo.config.ServiceConfig" >
+        <property name="protocol" value="rest" />
+    </bean>
 
     <bean class="org.dracula.test.dubbo.gateway.scanner.MyScannerConfigurer" >
         <property name="basePackage" value="org.dracula.test.dubbo.gateway.example" />
         <property name="referenceConfigTemplate" ref="referenceTemplate" />
         <property name="serviceConfigTemplate" ref="serviceTemplate" />
     </bean>
+
+    <dubbo:protocol name="dubbo" port="20881" />
+    <dubbo:protocol name="rest" port="8080" />
 
     <!-- for provider -->
     <dubbo:registry address="zookeeper://localhost:2181" />
