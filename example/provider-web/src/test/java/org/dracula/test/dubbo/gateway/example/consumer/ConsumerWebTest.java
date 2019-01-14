@@ -23,4 +23,28 @@ public class ConsumerWebTest {
         logger.info(response.getText());
     }
 
+    @Test
+    public void test_2(){
+        AnotherTestParam param = new AnotherTestParam();
+        param.setText("gxk");
+        AnotherTestParam response = restTemplate.postForObject("http://localhost:8080/TestInterface/sayHello2", param, AnotherTestParam.class);
+        logger.info(response.getText());
+    }
+
+    @Test
+    public void test2(){
+        AnotherTestParam param = new AnotherTestParam();
+        param.setText("gxk");
+        AnotherTestParam response = restTemplate.postForObject("http://localhost:8080/TestInterface2/sayHello", param, AnotherTestParam.class);
+        logger.info(response.getText());
+    }
+
+    @Test
+    public void test3(){
+        AnotherTestParam param = new AnotherTestParam();
+        param.setText("gxk");
+        AnotherTestParam response = restTemplate.postForObject("http://localhost:8080/TestInterface3/sayHello", param, AnotherTestParam.class);
+        logger.info(response.getText());
+    }
+
 }
