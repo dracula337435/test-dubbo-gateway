@@ -2,6 +2,8 @@ package org.dracula.test.dubbo.gateway.scanner;
 
 import com.alibaba.dubbo.config.spring.ReferenceBean;
 import com.alibaba.dubbo.config.spring.ServiceBean;
+import org.dracula.test.dubbo.gateway.anno.InstrumentationSavingAgent;
+import org.dracula.test.dubbo.gateway.anno.MyAssist;
 import org.dracula.test.dubbo.gateway.nowhere.FakeImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationBeanNameGenerator;
 import org.springframework.util.StringUtils;
 
+import java.lang.instrument.ClassDefinition;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -41,6 +44,14 @@ public class MyScannerConfigurer implements BeanDefinitionRegistryPostProcessor 
     private Consumer<BeanDefinitionHolder> scan1st = holder -> {
         GenericBeanDefinition definition = (GenericBeanDefinition) holder.getBeanDefinition();
         String previousClassName = definition.getBeanClassName();
+        //
+        try {
+            ClassDefinition classDefinition = MyAssist.transform(previousClassName);
+            InstrumentationSavingAgent.getInstrumentation().redefineClasses(classDefinition);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        //
         definition.setBeanClass(ReferenceBean.class);
         definition.setParentName(referenceConfigTemplate);
         MutablePropertyValues propertyValues = definition.getPropertyValues();
@@ -80,9 +91,9 @@ public class MyScannerConfigurer implements BeanDefinitionRegistryPostProcessor 
         //在扫描过程中改BeanName，因为扫描中有个机制，如果用Generator得到同名bean，判断两bean是否兼容。。。
         scanner.setBeanNameGenerator(new AnnotationBeanNameGenerator(){
             @Override
-            public String generateBeanName(BeanDefinition var1, BeanDefinitionRegistry var2){
-                String temp = super.generateBeanName(var1, var2)+"-remote-by-gateway";
-                String interfaceName = var1.getBeanClassName();
+            public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry){
+                String temp = super.generateBeanName(definition, registry)+"-remote-by-gateway";
+                String interfaceName = definition.getBeanClassName();
                 class2remote.put(interfaceName, temp);
                 return temp;
             }
@@ -91,9 +102,9 @@ public class MyScannerConfigurer implements BeanDefinitionRegistryPostProcessor 
         scanner = new MyScanner(registry, scan2nd);
         scanner.setBeanNameGenerator(new AnnotationBeanNameGenerator(){
             @Override
-            public String generateBeanName(BeanDefinition var1, BeanDefinitionRegistry var2){
-                String temp = super.generateBeanName(var1, var2)+"-nowhere-by-gateway";
-                String interfaceName = var1.getBeanClassName();
+            public String generateBeanName(BeanDefinition definition, BeanDefinitionRegistry registry){
+                String temp = super.generateBeanName(definition, registry)+"-nowhere-by-gateway";
+                String interfaceName = definition.getBeanClassName();
                 class2nowhere.put(interfaceName, temp);
                 return temp;
             }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author dk
  */
 @RestController
-@RequestMapping("/TestInterface3")
+@RequestMapping("/org.dracula.test.dubbo.gateway.example.subpack.TestInterface3")
 public class Test3Controller {
 
     @PostMapping("/sayHello")
