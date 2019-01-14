@@ -13,4 +13,25 @@
 
     <artifactId>test-dubbo-gateway-core</artifactId>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Premain-Class>
+                                org.dracula.test.dubbo.gateway.anno.InstrumentationSavingAgent
+                            </Premain-Class>
+                            <Can-Redefine-Classes>
+                                true
+                            </Can-Redefine-Classes>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>

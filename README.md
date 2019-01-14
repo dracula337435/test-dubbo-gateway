@@ -18,4 +18,6 @@ dubbo提供者rest+RestTemplate消费者，成功
 见版本```69d10ea8 on 2019/1/10 at 19:14```
 1. 用dubbo泛化实现，运行时错误```java.lang.IllegalArgumentException: argument type mismatch```  
 见```generic```项目中的例子，dubbo泛化```GenericService```传入参数，当复杂对象时就成了```Map```，再转换一次的话太麻烦  
-见版本```24a91938 on 2019/1/10 at 19:18```
+见版本```24a91938 on 2019/1/10 at 19:18```  
+1. 使用```Instrumentation```，需要在```META-INF/MANIFEST.MF中```指定```Premain-Class```，但是若在resources新建此文件则进不了jar，应改为使用jar插件，订制manifest  
+使用了redefine，需要在manifest中增加```Can-Redefine-Classes```
